@@ -1,34 +1,22 @@
 class Solution {
-    static int digitCount(int n){
-        int count = 0;
-        while(n > 0){
-            n = n / 10;
-            count++;
-        }
-        return count;
-    }
-    
-    static void makeList(int low, int high, int dig, List<Integer> list){
-        int x = 1, num = 0, gap = 0;
-        while(dig > 0){
-            num = (num*10) + (x++);
-            gap = (gap*10) + 1;
-            dig--;
-        }
-        while(num % 10 != 0){
-            if(num >= low && num <= high){
-                list.add(num);
-            }
-            num += gap;
-        }
-    }
-    
     public List<Integer> sequentialDigits(int low, int high) {
-        List<Integer> list = new ArrayList<>();
-        int start = digitCount(low), end = digitCount(high);
-        for(int i = start; i <= end; i++){
-            makeList(low, high, i, list);
+         int arr[] = {
+             12,23,34,45,56,67,78,89,
+             123,234,345,456,567,678,789,
+             1234,2345,3456,4567,5678,6789,
+             12345,23456,34567,45678,56789,
+             123456,234567,345678,456789,
+             1234567,2345678,3456789,
+             12345678,23456789,
+             123456789
+         };
+         List<Integer> res = new ArrayList<>();
+        
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]<low)continue;
+            if(arr[i]>high)break;
+            res.add(arr[i]);
         }
-        return list;
+        return res;
     }
 }
